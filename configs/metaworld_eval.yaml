@@ -1,0 +1,76 @@
+batch_size: 30
+batches: 500000
+osvi_wm_config: metaworld_data.yaml
+dataset:
+  T_context: 10
+  T_pair: 1
+  agent_context: 0
+  agent_dir: /data/raktim/Projects/IL/OSVI-WM/data/metaworld/
+  color_jitter:
+  - 0.
+  - 0.
+  - 0.
+  crop:
+  - 0
+  - 0
+  - 0
+  - 0
+  extra_samp_bound: 0.4
+  flip_sync: false
+  head_label: 0
+  height: 224
+  metaworld: true
+  rand_crop:
+  - 0
+  - 0
+  rand_flip: false
+  rand_translate:
+  - 0
+  - 0
+  randomize_vid_frames: false
+  sample_sides: true
+  state_spec:
+  - ee_aa
+  target_vid: true
+  teacher_dir: ''
+  test_tasks:
+  # - window-open-v2
+  - button-press-v2
+  # - door-unlock-v2
+  # - pick-place-wall-v2
+  traj_per_task: 100
+  type: agent teacher
+  waypoints: true
+  width: 224
+determ: false
+epochs: 2000
+goal_loss: false
+image_waypoints: true
+loader_workers: 15
+lr: 0.0005
+mixup: true
+policy:
+  adim: 4
+  concat_state: false
+  const_var: true
+  ent_head: true
+  latent_dim: 256
+  lstm_config:
+    is_rnn: false
+    n_layers: 1
+    out_dim: 32
+  n_mixtures: 2
+  num_ent_head: 2
+  pred_point: true
+  sub_waypoints: true
+  vis:
+    attn_heads: 4
+    n_st_attn: 2
+    normalize: false
+    small_head: true
+    st_goal_attn: true
+    use_pe: true
+  waypoints: 5
+save_freq: 10000
+save_optim: true
+waypoints: true

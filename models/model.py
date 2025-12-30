@@ -128,14 +128,16 @@ class StateSpaceModel(nn.Module):
 
         self.waypoint_head = nn.Sequential(nn.Dropout(0.2),nn.ReLU(),nn.Linear(latent_dim*5,waypoints*4),Rearrange('... (w d) -> ... w d',d = 4))
 
-    def forward(self, images, context):
+    def forward(self, images, context, T_tot=None):
         T_context = context.shape[1]
         enc_features, target_features, enc_features_raw = self._embed(images, context, False)
 
         context_states = enc_features[:,:T_context]
         current_state = enc_features[:,T_context:T_context+1]
         all_next_states = []
-        for i in range(enc_features.shape[1]-T_context-1):
+        if T_tot == None:
+            T_tot = enc_features.shape[1]
+        for i in range(T_tot-T_context-1):
             act_input = torch.concat([context_states, current_state],dim=1)
             act_features = self.action_model(act_input)
             forward_model_input = torch.concat([act_features[:,T_context:], current_state],dim=2).flatten(2,4)

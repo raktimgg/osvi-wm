@@ -86,6 +86,45 @@ The pre-trained checkpoints for Meta-World and Pick-and-Place can be downloaded 
 **Note**:
 As discussed in the paper, early stopping is often necessary when training on Meta-World to prevent overfitting. To address this, the Meta-World training script saves a separate checkpoint after each epoch. This approach ensures that the checkpoint from the final epoch is not automatically assumed to be the best-performing one, allowing for selection of the optimal model based on evaluation performance.
 
+### ✈️ Evaluation
+
+We evaluate our model using the evaluation framework from [osvi-awda](https://github.com/MatthewChang/osvi-awda), with minor modifications to integrate our model. Follow the steps below to reproduce the evaluation.
+
+1. Clone and set up the [osvi-awda](https://github.com/MatthewChang/osvi-awda) repository following its official instructions.
+2. Upgrade pytorch (if needed)
+```
+pip install --upgrade torch torchvision
+```
+3. Replace the evaluation script in `osvi-awda` with the modified version from OSVI-WM:
+```
+cp <OSVI-WM>/scripts/evaluate.py osvi-awda/scripts/evaluate.py
+cp <OSVI-WM>/scripts/eval_utils.py osvi-awda/scripts/eval_utils.py
+```
+4. Edit the following YAML configuration files to use absolute paths:
+- `configs/metaworld_eval.yaml`
+  - Update: `agent_dir`
+- `configs/pick_place_eval.yaml`
+  - Update: `agent_dir`
+  - Update: `teacher_dir`
+5. From the `osvi-awda` directory, run:
+```
+export OSVIWM_PATH=<path-to-osvi-wm>
+export PYTHONPATH=$PYTHONPATH:.:$OSVIWM_PATH
+```
+Meta-World Evaluation
+```
+CUDA_VISIBLE_DEVICES=0 python scripts/evaluate.py $OSVIWM_PATH/configs/metaworld_eval.yaml --test_task <task_name> --instances 100 --envs 40
+```
+Choose task_name from `button-press-v2`, `pick-place-wall-v2`, `window-open-v2`, `door-unlock-v2`. Adjust --envs based on your GPU memory.
+
+Pick-and-Place Evaluation
+```
+CUDA_VISIBLE_DEVICES=0 python scripts/evaluate.py $OSVIWM_PATH/configs/pick_place_eval.yaml --instances 100 --envs 20
+```
+Adjust --envs based on your GPU memory.
+
+After completion, the script prints the success rate for the evaluated task.
+
 ## Results
 <justify>
 <img src="assets/sim_results.png" alt="Alt text" />

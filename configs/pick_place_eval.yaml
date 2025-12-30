@@ -1,0 +1,63 @@
+batch_size: 30
+osvi_wm_config: pick_place_data.yaml
+dataset:
+  T_context: 10
+  T_pair: 1
+  agent_context: 0
+  agent_dir: /data/raktim/Projects/IL/OSVI-WM/data/pick_place/panda/*.pkl
+  color_jitter:
+  - 0.
+  - 0.
+  - 0.
+  crop:
+  - 100
+  - 0
+  - 0
+  - 0
+  extra_samp_bound: 0.4
+  flip_sync: false
+  height: 240
+  rand_crop:
+  - 0
+  - 0
+  rand_flip: false
+  rand_translate:
+  - 0
+  - 0
+  randomize_vid_frames: false
+  sample_sides: true
+  state_spec: []
+  target_vid: true
+  teacher_dir: /data/raktim/Projects/IL/OSVI-WM/data/pick_place/sawyer/*.pkl
+  traj_per_task: 100
+  type: agent teacher
+  waypoints: true
+  width: 320
+epochs: 2000
+goal_loss: false
+image_waypoints: true
+loader_workers: 10
+lr: 0.0005
+mixup: true
+policy:
+  concat_state: false
+  const_var: true
+  grasp: true
+  latent_dim: 60
+  lstm_config:
+    is_rnn: false
+    n_layers: 1
+    out_dim: 40
+  n_mixtures: 2
+  pred_point: true
+  sub_waypoints: true
+  vis:
+    attn_heads: 4
+    n_st_attn: 2
+    normalize: false
+    st_goal_attn: true
+    use_pe: true
+  waypoints: 5
+save_freq: 10000
+save_optim: true
+waypoints: true
