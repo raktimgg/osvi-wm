@@ -1,0 +1,46 @@
+data:
+  teacher_dir: ""
+  T_context: 10
+  agent_context: 0
+  T_pair: 5
+  height: 224
+  width: 224
+  crop: [0, 0, 0, 0]
+  rand_crop: [12, 16]
+  rand_translate: [12, 16]
+  color_jitter: [0.4, 0.4, 0.4]
+  rand_flip: true
+  flip_sync: true
+  sample_sides: true
+  state_spec: [ee_aa]
+  extra_samp_bound: 0.4
+  traj_per_task: 100
+  target_vid: true
+  randomize_vid_frames: true
+  metaworld: true
+  agent_dir: data/metaworld/
+  test_tasks: ["window-open-v2", "button-press-v2", "door-unlock-v2","pick-place-wall-v2"]
+  waypoints: true
+  head_label: 0
+model:
+  latent_dim: 256
+  out_dim: 32
+  waypoints: 5
+  sub_waypoints: true
+  ent_head: true
+  num_ent_head: 2
+training:
+  num_epochs: 10
+  downstream_num_epochs: 10
+  batch_size: 32
+  num_workers: 12
+  valid_freq: 1
+  mixup: true
+  max_lr: 0.0002
+  final_div_factor: 1000
+  ema:
+    - 0.998
+    - 1.0
+  use_accelerate: true
+  log_wandb: false
+  

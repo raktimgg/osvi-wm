@@ -1,0 +1,43 @@
+data:
+  agent_dir: data/pick_place/panda/
+  teacher_dir: data/pick_place/sawyer/
+  T_context: 10
+  agent_context: 0
+  T_pair: 1
+  height: 240
+  width: 320
+  crop: [100, 0, 0, 0]
+  rand_crop: [12, 16]
+  rand_translate: [12, 16]
+  color_jitter: [0.4, 0.4, 0.4]
+  rand_flip: True
+  flip_sync: True
+  sample_sides: True
+  state_spec: []
+  extra_samp_bound: 0.4
+  traj_per_task: 100
+  target_vid: True
+  randomize_vid_frames: True
+  waypoints: true
+model:
+  latent_dim: 256
+  out_dim: 32
+  waypoints: 5
+  sub_waypoints: true
+  ent_head: false
+  num_ent_head: 2
+training:
+  num_epochs: 10
+  downstream_num_epochs: 10
+  batch_size: 32
+  num_workers: 12
+  valid_freq: 1
+  mixup: true
+  max_lr: 0.0002
+  final_div_factor: 100
+  ema:
+    - 0.998
+    - 1.0
+  use_accelerate: true
+  log_wandb: false
+  
