@@ -42,5 +42,5 @@ training:
     - 0.998
     - 1.0
   use_accelerate: true
-  log_wandb: false
+  log_wandb: true
   
