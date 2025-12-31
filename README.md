@@ -22,15 +22,6 @@
 <p>Fig. 1: OSVI-WM infers the task from the expert demonstration and, along with the agent’s observation “foresees” future latent states using a world-model-guided trajectory generation module. The predicted trajectory is decoded into physical waypoints for control.</p>
 </justify>
 
-## 🚀 Code Release Checklist
-- [x] Environment Creation
-- [x] Dataset Generation
-- [x] Meta-World Training code
-- [x] Pick-and-Place Training code
-- [x] Model Checkpoints
-- [ ] Meta-World Evaluation Code
-- [ ] Pick-and-Place Evaluation Code
-
 ## 🔨 Environment Creation   
 ```
 conda create --name osvi_wm python=3.10
