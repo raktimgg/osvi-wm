@@ -10,6 +10,8 @@
 📖 Pre-print: [https://arxiv.org/pdf/2505.20425](https://arxiv.org/pdf/2505.20425)  
 📹 Video: [https://www.youtube.com/watch?v=QfR6laGZr7A](https://www.youtube.com/watch?v=QfR6laGZr7A)
 
+🌐 Website: [https://raktimgg.github.io/osvi-wm-website/](https://raktimgg.github.io/osvi-wm-website/)
+
 
 ## 💡 OSVI-WM Contributions
 - **Architecture**: An efficient end-to-end imitation learning architecture trained solely on in-domain data, without requiring large-scale pretraining.
